@@ -1,15 +1,28 @@
-<?php include("template/cabecera.php");  ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-lg-5">
+                <a class="navbar-brand" href="#!"><?php echo $titulo;?></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               
 
 
-<div class="jumbotron">
-    <h1 class="display-3">Editar contenido</h1>
-    <hr class="my-2">
-    <?php 
+            <div class="container px-lg-5">        
+        <?php 
 
+        
+//https://www.onlineclassnotes.com/2016/08/how-to-read-and-write-ini-files-in-php.html
+//https://theonlytutorials.com/read-and-update-config-file-ini-file-in-php/
 //put the file path here
+//$filepath = 'config.ini';
 $filepath = 'configuracion.ini';
-
 //after the form submit
+
 if($_POST){
 	$data = $_POST;
 	//update ini file, call function
@@ -71,13 +84,6 @@ $parsed_ini = parse_ini_file($filepath, true);
 	?>
 	<input type="submit" value="Update INI" />
 </form>
-    
-</div>
 
 
 
-
-
-
-
-<?php include("template/pie.php");  ?>
