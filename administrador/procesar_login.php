@@ -7,6 +7,7 @@ include("configuracion.php");
 
 //var_dump($_POST);
 if ( ($_POST['usuario']==$usuario_sis) && ($_POST['clave']==$clave_sis) ){
+    $_SESSION['token']=$token_sis;
     header('Location:inicio.php');
    
 }else{

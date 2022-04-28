@@ -10,15 +10,19 @@
 </head>
 <body style="background-image: url('\images\admin.jpg');">
 
-<div class="container" >
+<div class="container" ><br>
+<?php $url="http://".$_SERVER['HTTP_HOST']."/wifipiedra" ?>
+<a class="btn btn-outline-secondary" href="<?php echo $url; ?>" role="button">Volver a la Pagina</a>
 
 <div class="row">
 <div class="col-md-4">
 
 
 </div>
+
     <div class="col-md-4">
     <br><br><br>
+    
     
 
     <div class="card" style="background-color: #7DC2C7;">
@@ -39,12 +43,14 @@
             </div><br>
            
 
-            <button type="submit" class="btn btn-light">Ingresar a administrador</button>
+            <button type="submit" class="btn btn-outline-light" style="margin-left: 53px;">Ingresar a administrador</button>
 
 
 
 
             </form>
+
+        
 
 
           
