@@ -4,11 +4,14 @@
 <?php include("template/cabecera.php");  ?>
 
 
+
 <div class="jumbotron">
     <h1 class="display-3">Subir imagenes</h1>
     <hr class="my-2">
 
+  
     <?php
+    /* Comprobando si el mensaje de la sesión está configurado y, si lo está, lo imprime. */
     if (isset($_SESSION['message']) && $_SESSION['message'])
     {
       printf('<b>%s</b>', $_SESSION['message']);

@@ -1,11 +1,14 @@
 <?php include("session.php");?>
 <?php
 $message = ''; 
+/* * El código anterior está cargando un archivo al servidor. */
 if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
 {
   if (isset($_FILES['uploadedFile']) && $_FILES['uploadedFile']['error'] === UPLOAD_ERR_OK)
   {
-    // get details of the uploaded file
+   
+   /* Obtener los detalles del archivo subido. */
+
     $fileTmpPath = $_FILES['uploadedFile']['tmp_name'];
     $fileName = $_FILES['uploadedFile']['name'];
     $fileSize = $_FILES['uploadedFile']['size'];
@@ -13,18 +16,22 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
     $fileNameCmps = explode(".", $fileName);
     $fileExtension = strtolower(end($fileNameCmps));
 
-    // sanitize file-name
+    // desinfectar el nombre del archivo
     $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
 
-    // check if file has one of the following extensions
+    
+// comprobar si el archivo tiene una de las siguientes extensiones
     $allowedfileExtensions = array('jpg', 'gif', 'png', 'zip', 'txt', 'xls', 'doc');
 
+   /* Comprobando si la extensión del archivo está en la matriz de extensiones de archivo permitidas. */
     if (in_array($fileExtension, $allowedfileExtensions))
     {
-      // directory in which the uploaded file will be moved
+      // directorio en el que se moverá el archivo cargado
       $uploadFileDir = './uploaded_files/';
       $dest_path = $uploadFileDir . $newFileName;
 
+     
+/* Mover el archivo al directorio. */
       if(move_uploaded_file($fileTmpPath, $dest_path)) 
       {
         $message ='Se subio El archivo En forma Correcta. con el siguiente nombre:' .$newFileName.'<br>'.
@@ -47,5 +54,6 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload')
     $message .= 'Error:' . $_FILES['uploadedFile']['error'];
   }
 }
+/* Redirecting the user to the gimagen.php page. */
 $_SESSION['message'] = $message;
 header("Location: gimagen.php");

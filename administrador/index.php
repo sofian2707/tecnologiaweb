@@ -45,17 +45,8 @@
 
             <button type="submit" class="btn btn-outline-light" style="margin-left: 53px;">Ingresar a administrador</button>
 
-
-
-
             </form>
-
-        
-
-
-          
-            
-           
+                   
         </div>
     </div>
 

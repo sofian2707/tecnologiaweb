@@ -1,8 +1,10 @@
 <?php
+/* Analizando el archivo ini y almacenándolo en la variable . */
 $archivo =  "configuracion.ini";
 $contenido = parse_ini_file($archivo, true);
 
 // usuarios del sistema
+/* Analizando el archivo ini y almacenándolo en la variable. */
 $usuario_sis=  $contenido["login"]["usuario"];
 $clave_sis = $contenido["login"]["clave"];
 $token_sis = $contenido["login"]["token"];

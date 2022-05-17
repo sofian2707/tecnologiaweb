@@ -1,9 +1,11 @@
+
 <?php include("administrador/configuracion.php");?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Boxer - Software Landing Page</title>
+		<title>Wifi Piedra</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="keywords" content="">
@@ -221,24 +223,43 @@
 							</address>
 						</div>
 						<div class="col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-							<div class="contact-form">
-								<form action="#" method="post">
+							<div class="contact-form">	
+<?php
+/*  verifica si el formulario ha sido enviado. Si lo tiene, está comprobando si
+el campo de nombre está vacío. Si es así, está mostrando una alerta. Si no es así, está mostrando un
+alerta diferente. */
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $nombre = $_POST['nombre'];
+  $telefono = $_POST['telefono'];
+  $email = $_POST['email'];
+  $direccion = $_POST['direccion'];
+  if (empty($nombre)) {
+    echo '<script language="javascript">alert("Formulario incompleto")</script>';
+	
+  } else {
+    echo '<script language="javascript">alert("Gracias por enviar tus datos")</script>';
+  }  }
+
+?>				
+								<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">	
 									<div class="col-md-6">
-										<input type="text" class="form-control" placeholder="Nombre">
+										<input type="text" name="nombre" class="form-control" placeholder="Nombre">
 									</div>
 									<div class="col-md-6">
-										<input type="tel" class="form-control" placeholder="Telefono">
+										<input type="tel" name="telefono" class="form-control" placeholder="Telefono">
 									</div>
 									<div class="col-md-12">
-										<input type="text" class="form-control" placeholder="Direccion">
+										<input type="text"  name="direccion" class="form-control" placeholder="Direccion">
 									</div>
 									<div class="col-md-12">
-										<input type="email" class="form-control" placeholder="Email">
+										<input type="email" name="email" class="form-control" placeholder="Email">
 									</div>
 									<div class="col-md-8">
 										<input type="submit" class="form-control text-uppercase" value="Quiero que me contacten">
 									</div>
 								</form>
+
 							</div>
 						</div>
 					</div>

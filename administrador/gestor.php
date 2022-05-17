@@ -15,42 +15,55 @@
             <div class="container px-lg-5">        
         <?php 
 
-        
-//https://www.onlineclassnotes.com/2016/08/how-to-read-and-write-ini-files-in-php.html
-//https://theonlytutorials.com/read-and-update-config-file-ini-file-in-php/
-//put the file path here
-//$filepath = 'config.ini';
+/* Establecer la ruta al archivo ini. */
 $filepath = 'configuracion.ini';
-//after the form submit
 
+/* Comprobando si el formulario ha sido enviado. Si lo tiene, tomará los datos del formulario y los pasará
+a la función update_ini_file. */
 if($_POST){
 	$data = $_POST;
-	//update ini file, call function
+//actualizar archivo ini, función de llamada
 	update_ini_file($data, $filepath);
 }
 
-//this is the function going to update your ini file
+//esta es la función que actualizará su archivo ini
+
+
+/**
+* Toma una serie de datos y los escribe en un archivo ini.
+esta es la función que actualizará 
+*
+* @param data Los datos para escribir en el archivo.
+* @param filepath La ruta al archivo ini.
+*
+* @return el número de bytes escritos en el archivo, o FALSO en caso de falla.
+*/
+
+
 	function update_ini_file($data, $filepath) { 
 		$content = ""; 
 		
-		//parse the ini file to get the sections
-		//parse the ini file using default parse_ini_file() PHP function
+
 		$parsed_ini = parse_ini_file($filepath, true);
+
+// analiza el archivo ini para obtener las secciones
+// analizar el archivo ini utilizando la función PHP parse_ini_file() predeterminada 
 		
 		foreach($data as $section=>$values){
-			//append the section 
+			//añadir la sección
 			$content .= "[".$section."]\n"; 
-			//append the values
+			//añadir los valores
 			foreach($values as $key=>$value){
 				$content .= $key."=".$value."\n"; 
 			}
 		}
 		
-		//write it into file
+		/*  escribir en él archivo */
 		if (!$handle = fopen($filepath, 'w')) { 
 			return false; 
 		}
 
+		
 		$success = fwrite($handle, $content);
 		fclose($handle); 
 
@@ -59,10 +72,11 @@ if($_POST){
 ?>
 <?php 
 
-//parse the ini file using default parse_ini_file() PHP function
+// analizar el archivo ini utilizando la función PHP parse_ini_file() predeterminada
 $parsed_ini = parse_ini_file($filepath, true);
 
 ?>
+
 
 <form action="" method="post">
 	<?php 
@@ -70,10 +84,10 @@ $parsed_ini = parse_ini_file($filepath, true);
 	foreach($parsed_ini as $section=>$values){
         echo '<div class="form-floating mb-3">';
 		echo "<h3>$section</h3>";
-		//keep the section as hidden text so we can update once the form submitted
+		//mantener la sección como texto oculto para que podamos actualizar una vez que se envíe el formulario
 		echo "<input type='hidden' value='$section' name='$section' />";
-		//print all other values as input fields, so can edit. 
-		//note the name='' attribute it has both section and key
+		// imprime todos los demás valores como campos de entrada, por lo que puede editar.
+       //note el atributo name='' que tiene tanto la sección como la clave
 		foreach($values as $key=>$value){
 			echo "<p>".$key.": <input class='form-control' type='text' name='{$section}[$key]' value='$value' />"."</p>";
 		}
